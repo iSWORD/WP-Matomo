@@ -37,7 +37,7 @@ class TrackingCode {
         if (preg_match ( '/var u="([^"]*)";/', $code, $hits )) {
             $fetchedProxyUrl = $hits [1];
         } else $fetchedProxyUrl = '';
-        if ($settings->getGlobalOption ( 'track_mode' ) == 'js')
+		if ($settings->getGlobalOption ( 'track_mode' ) == 'js')
 			$code = str_replace ( array (
 					'piwik.js',
 					'piwik.php'
@@ -112,6 +112,7 @@ class TrackingCode {
 	}
 
 	private function applyUserTracking() {
+		$pkUserId = null;
 		if (\is_user_logged_in()) {
 			// Get the User ID Admin option, and the current user's data
 			$uidFrom = self::$wpPiwik->getGlobalOption ( 'track_user_id' );
@@ -126,10 +127,11 @@ class TrackingCode {
 			} elseif ( $uidFrom == 'displayname' ) {
 				$pkUserId = $current_user->display_name;
 			}
-			// Check we got a User ID to track, and track it
-			if ( isset( $pkUserId ) && ! empty( $pkUserId ))
-				$this->trackingCode = str_replace ( "_paq.push(['trackPageView']);", "_paq.push(['setUserId', '" . esc_js( $pkUserId ) . "']);\n_paq.push(['trackPageView']);", $this->trackingCode );
-		}		
+		}
+		$pkUserId = apply_filters('wp-piwik_tracking_user_id', $pkUserId);
+         	// Check we got a User ID to track, and track it
+         	if ( isset( $pkUserId ) && ! empty( $pkUserId ))
+			$this->trackingCode = str_replace ( "_paq.push(['trackPageView']);", "_paq.push(['setUserId', '" . esc_js( $pkUserId ) . "']);\n_paq.push(['trackPageView']);", $this->trackingCode );
 	}
 	
 	private function addCustomValues() {
