@@ -1,8 +1,8 @@
-﻿=== WP-Piwik ===
+=== WP-Piwik ===
 
 Contributors: Braekling
 Requires at least: 4.0
-Tested up to: 4.7
+Tested up to: 4.7.3
 Stable tag: 1.1.0
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6046779
 Tags: piwik, tracking, statistics, stats, analytics
@@ -11,7 +11,7 @@ This plugin adds a Piwik stats site to your WordPress or WordPress multisite das
 
 == Description ==
 
-This plugin uses the Piwik API to show your Piwik statistics in your WordPress dashboard. It's also able to add the Piwik tracking code to your blog and to do some modifications to the tracking code. WP-Piwik also supports WordPress networks and manages multiple sites and their tracking codes.
+This plugin uses the Piwik API to show your Piwik statistics in your WordPress dashboard. It's also able to add the Piwik tracking code to your blog and to do some modifications to the tracking code. Additionally, WP-Piwik supports WordPress networks and manages multiple sites and their tracking codes.
 
 To use this plugin you will need your own Piwik instance. If you do not already have a Piwik setup, you have two simple options: use either [Self-hosted](http://piwik.org/) or [Cloud-hosted](http://piwik.org/hosting/).
 
@@ -50,7 +50,7 @@ is equal to *[wp-piwik module="overview" title="" period="day" date="yesterday"]
 
 * Graphs powered by [jqPlot](http://www.jqplot.com/) (GPL 2.0 and MIT) and and [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/) (New BSD License).
 * All translators at the [Transifex translation community](https://www.transifex.com/projects/p/wp-piwik/).
-* Donations: Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., the Piwik team itself, and all people flattering this.
+* Donations: Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., Harald W., Jan M., the Piwik team itself, and all people flattering this.
 * All users who send me mails containing criticism, commendation, feature requests and bug reports - you help me to make WP-Piwik much better!
 
 Thank you all!
@@ -61,7 +61,7 @@ Thank you all!
 
 To use this plugin you will need your own Piwik instance. If you do not already have a Piwik setup, you have two simple options: use either [Self-hosted](http://piwik.org/) or [Cloud-hosted](http://piwik.org/hosting/). 
 
-As soon as Piwik works, you'll be able to configure WP-Piwik: The Piwik URL is the same URL you use to access your Piwik, e.g. for the demo site: http://demo.piwik.org. The auth token is some kind of a secret password, which allows WP-Piwik to get the necessary data from Piwik. To get your auth token, log in to Piwik, click at your user name (top right) and click at "API" (left sidebar menu).
+As soon as Piwik works, you'll be able to configure WP-Piwik: The Piwik URL is the same URL you use to access your Piwik, e.g. for the demo site: http://demo.piwik.org. The auth token is some kind of a secret password, which allows WP-Piwik to get the necessary data from Piwik. To get your auth token, log in to Piwik, click at the preferences gear icon (top right) and click at "API" (left sidebar menu, near the bottom).
 
 You can get a more detailed description here: https://piwik.org/blog/2015/05/wordpress-integration-wp-piwik-1-0/
 
@@ -137,6 +137,7 @@ Add WP-Piwik to your /wp-content/plugins folder and enable it as [Network Plugin
 * Bugfix: Output of "post" shortcode was incorrectly placed, see https://wordpress.org/support/topic/post-shortcode-values-are-incorrectly-placed/
 * Bugfix: Usage of WP_PROXY_BYPASS_HOSTS, see https://wordpress.org/support/topic/bug-considering-wp_proxy_bypass_hosts-in-proxy-setups/
 * Bugfix: Proxy script did not work with cURL, see https://github.com/braekling/WP-Piwik/issues/48
+* Bugfix: RSS feed tracking did not use proxy URL
 
 = 1.0.14 =
 * Action "wp-piwik_site_created" was extended by a site ID parameter, so it will deliver the Piwik site ID of the created site

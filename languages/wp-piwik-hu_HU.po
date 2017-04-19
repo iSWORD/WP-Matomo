@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the WP-Piwik package.
 # Translators:
 # Márk Kökény <oregapamgroup@gmail.com>, 2015-2016
+# Márk Kökény <oregapamgroup@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: WP-Piwik\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-piwik\n"
 "POT-Creation-Date: 2016-10-09 20:03:09+00:00\n"
-"PO-Revision-Date: 2016-10-10 10:04+0000\n"
-"Last-Translator: Stefan Giehl <stefan@piwik.org>\n"
+"PO-Revision-Date: 2016-12-21 20:08+0000\n"
+"Last-Translator: Márk Kökény <oregapamgroup@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/piwik/wp-piwik/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -743,7 +744,7 @@ msgstr "nem ajánlott"
 
 #: classes/WP_Piwik/Admin/Settings.php:301
 msgid "Disable SSL host verification"
-msgstr ""
+msgstr "SSL hoszt ellenőrzésének letiltása"
 
 #: classes/WP_Piwik/Admin/Settings.php:303
 msgid "User agent"
@@ -1104,7 +1105,7 @@ msgstr "Látogatók"
 msgid ""
 "The graph contains the values shown in the table below (visitors / unique / "
 "bounces). The red line shows a linear trendline (unique)."
-msgstr ""
+msgstr "A grafikon tartalmazza az értékeket, melyek láthatóak a lentebbi táblázatban (látogatók / egyedi / visszapattanások). A vörös vonal mutatja a lineáris trendvonalat (egyedi)."
 
 #: classes/WP_Piwik/Widget/Country.php:18
 msgid "Countries"

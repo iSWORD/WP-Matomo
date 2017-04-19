@@ -496,20 +496,8 @@ class Settings extends \WP_Piwik\Admin {
 	<p>
 		<?php _e('If you like WP-Piwik, you can support its development by a donation:', 'wp-piwik'); ?>
 	</p>
-	<script type="text/javascript">
-	/* <![CDATA[ */
-	window.onload = function() {
-		FlattrLoader.render({
-        	'uid': 'flattr',
-            'url': 'http://wp.local',
-            'title': 'Title of the thing',
-            'description': 'Description of the thing'
-		}, 'element_id', 'replace');
-	}
-	/* ]]> */
-	</script>
 	<div>
-		<a class="FlattrButton" style="display:none;" title="WordPress Plugin WP-Piwik" rel="flattr;uid:braekling;category:software;tags:wordpress,piwik,plugin,statistics;" href="https://www.braekling.de/wp-piwik-wpmu-piwik-wordpress">This WordPress plugin adds a Piwik stats site to your WordPress dashboard. It's also able to add the Piwik tracking code to your blog using wp_footer. You need a running Piwik installation and at least view access to your stats.</a>
+		<script id='fb0ahsp'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//button.flattr.com/view/?fid=mkdp7z&url=https%3A%2F%2Fwww.braekling.de%2Fwp-piwik-wpmu-piwik-wordpress';f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fb0ahsp');</script>
 	</div>
 	<div>
 		Paypal
@@ -549,7 +537,6 @@ class Settings extends \WP_Piwik\Admin {
 	 */
 	public function extendAdminHeader() {
 		echo '<script type="text/javascript">var $j = jQuery.noConflict();</script>';
-		echo '<script type="text/javascript">/* <![CDATA[ */(function() {var s = document.createElement(\'script\');var t = document.getElementsByTagName(\'script\')[0];s.type = \'text/javascript\';s.async = true;s.src = \'//api.flattr.com/js/0.6/load.js?mode=auto\';t.parentNode.insertBefore(s, t);})();/* ]]> */</script>';
 	}
 
 	/**
@@ -557,7 +544,7 @@ class Settings extends \WP_Piwik\Admin {
 	 */
 	public function showCredits() {
 		?>
-		<p><strong><?php _e('Thank you very much for your donation', 'wp-piwik'); ?>:</strong> Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., <?php _e('the Piwik team itself','wp-piwik');?><?php _e(', and all people flattering this','wp-piwik'); ?>!</p>
+		<p><strong><?php _e('Thank you very much for your donation', 'wp-piwik'); ?>:</strong> Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., Harald W., Jan M., <?php _e('the Piwik team itself','wp-piwik');?><?php _e(', and all people flattering this','wp-piwik'); ?>!</p>
 		<p><?php _e('Graphs powered by <a href="http://www.jqplot.com/">jqPlot</a> (License: GPL 2.0 and MIT) and <a href="http://omnipotent.net/jquery.sparkline/">jQuery Sparklines</a> (License: New BSD License).','wp-piwik'); ?></p>
 		<p><?php _e('Thank you very much','wp-piwik'); ?> <a href="https://www.transifex.com/projects/p/wp-piwik/">Transifex Translation Community</a> <?php _e('for your translation work','wp-piwik'); ?>!</p>
 		<p><?php _e('Thank you very much, all users who send me mails containing criticism, commendation, feature requests and bug reports! You help me to make WP-Piwik much better.','wp-piwik'); ?></p>
