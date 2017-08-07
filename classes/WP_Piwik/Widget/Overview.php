@@ -28,15 +28,17 @@
 					if (is_array($response)) {
 						foreach ($response as $data)
 							foreach ($data as $key => $value)
-								if (isset($result[$key]))
+								if (isset($result[$key]) && is_numeric($value))
 									$result[$key] += $value;
-								else
+								elseif (is_numeric($value))
 									$result[$key] = $value;
-						if (isset($result['nb_visits']) && $result['nb_visits'] > 0) {
-						    $result['nb_actions_per_visit'] = round($result['nb_actions'] / $result['nb_visits'], 1);
-						    $result['bounce_rate'] = round($result['bounce_count'] / $result['nb_visits'] * 100, 1) . '%';
-						    $result['avg_time_on_site'] = round($result['sum_visit_length'] / $result['nb_visits'], 0);
-						} else $result['nb_actions_per_visit'] = $result['bounce_rate'] = $result['avg_time_on_site'] = 0;
+                                else
+                                    $result[$key] = 0;
+                        if (isset($result['nb_visits']) && $result['nb_visits'] > 0) {
+                            $result['nb_actions_per_visit'] = round($result['nb_actions'] / $result['nb_visits'], 1);
+                            $result['bounce_rate'] = round($result['bounce_count'] / $result['nb_visits'] * 100, 1) . '%';
+                            $result['avg_time_on_site'] = round($result['sum_visit_length'] / $result['nb_visits'], 0);
+                        } else $result['nb_actions_per_visit'] = $result['bounce_rate'] = $result['avg_time_on_site'] = 0;
 					}
 					$response = $result;	
 				}

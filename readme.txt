@@ -2,7 +2,7 @@
 
 Contributors: Braekling
 Requires at least: 4.0
-Tested up to: 4.7.3
+Tested up to: 4.8.1
 Stable tag: 1.1.0
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6046779
 Tags: piwik, tracking, statistics, stats, analytics
@@ -50,7 +50,7 @@ is equal to *[wp-piwik module="overview" title="" period="day" date="yesterday"]
 
 * Graphs powered by [jqPlot](http://www.jqplot.com/) (GPL 2.0 and MIT) and and [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/) (New BSD License).
 * All translators at the [Transifex translation community](https://www.transifex.com/projects/p/wp-piwik/).
-* Donations: Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., Harald W., Jan M., Addy K., the Piwik team itself, and all people flattering this.
+* Donations: Marco L., Rolf W., Tobias U., Lars K., Donna F., Kevin D., Ramos S., Thomas M., John C., Andreas G., Ben M., Myra R. I., Carlos U. R.-S., Oleg I., M. N., Daniel K., James L., Jochen K., Cyril P., Thomas K., Patrik K., Zach, Sebastian W., Peakkom, Patrik K., Kati K., Helmut O., Valerie S., Jochen D., Atlas R., Harald W., Jan M., Addy K., Hans-Georg E.-B., Yvonne K., Andrew D., the Piwik team itself, and all people flattering this.
 * All users who send me mails containing criticism, commendation, feature requests and bug reports - you help me to make WP-Piwik much better!
 
 Thank you all!
@@ -74,9 +74,19 @@ The response output contains...
 * **bool(false)** and **HTTP/1.1 404 Not Found**: The Piwik URL is wrong. Try to copy & paste the URL you use to access Piwik itself via browser.
 * **bool(false)** and no further HTTP response code: The Piwik server does not respond. Very often, this is caused by firewall or mod_security settings. Check your server logfiles to get further information. If you aren’t sure about this, please contact your web hoster for support.
 
+= PHP Compatibility Checker reports PHP7 compatbility issues with WP-Piwik. =
+
+The Compatibility Checker shows two false positives. WP-Piwik is 100% PHP7 compatible, you can ignore the report.
+
 = Overview shortcode shows no unique visitors using a yearly range. =
 
 See [Piwik FAQ](http://piwik.org/faq/how-to/#faq_113).
+
+= WP-Piwik only shows the first 100 sites of my multisite network. How can I get all other sites? =
+
+The Piwik API is limited to 100 sites by default. Add the following line to the section [General] of Piwik's config/config.ini.php file:
+
+    API_datatable_default_limit = 1000
 
 = Tracking does not work on HostGator! =
 
@@ -131,6 +141,18 @@ Add WP-Piwik to your /wp-content/plugins folder and enable it as [Network Plugin
 5. Piwik: Here you'll find your auth token.
 
 == Changelog ==
+
+= 1.0.16 =
+* Added Innocraft Cloud support (the new service created by the people behind Piwik). Piwik.pro is still usable via HTTP mode, the configuration will be updated automatically.
+* Add search functionality to site browser
+* Added preload DNS option, see https://piwik.org/blog/2017/04/important-performance-optimizations-load-piwik-javascript-tracker-faster/
+* Added option to set link and download classes (expert settings)
+* Added option to choose which post types should be considered for annotations
+* Bugfix: Opening Piwik stats of a specific network site does not lead to the sitebrowser anymore
+* Bugfix: Avoid unnecessary notices
+* Bugfix: Avoid a warning in proxy script
+* Bugfix: NoScript code is working again
+* Replaced deprecated wp_get_sites
 
 = 1.0.15 =
 * Allow to modify the tracked user ID using the filter "wp-piwik_tracking_user_id"
