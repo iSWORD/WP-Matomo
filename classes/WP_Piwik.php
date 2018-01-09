@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The main WP-Piwik class configures, registers and manages the plugin
+ * The main WP-Matomo class configures, registers and manages the plugin
  *
  * @author Andr&eacute; Br&auml;kling <webmaster@braekling.de>
  * @package WP_Piwik
@@ -12,10 +12,10 @@ class WP_Piwik {
 	 *
 	 * @var Runtime environment variables
 	 */
-	private static $revisionId = 2017080701, $version = '1.1.0', $blog_id, $pluginBasename = NULL, $logger, $settings, $request, $optionsPageId;
+	private static $revisionId = 2018010901, $version = '1.1.0', $blog_id, $pluginBasename = NULL, $logger, $settings, $request, $optionsPageId;
 
 	/**
-	 * Constructor class to configure and register all WP-Piwik components
+	 * Constructor class to configure and register all WP-Matomo components
 	 */
 	public function __construct() {
 		global $blog_id;
@@ -478,6 +478,8 @@ class WP_Piwik {
 				) );
 			if (self::$settings->getGlobalOption ( 'dashboard_chart' ))
 				new WP_Piwik\Widget\Chart ( $this, self::$settings );
+            if (self::$settings->getGlobalOption ( 'dashboard_ecommerce' ))
+                new WP_Piwik\Widget\Ecommerce ( $this, self::$settings );
 			if (self::$settings->getGlobalOption ( 'dashboard_seo' ))
 				new WP_Piwik\Widget\Seo ( $this, self::$settings );
 		}
@@ -777,7 +779,7 @@ class WP_Piwik {
 	 */
 	public static function definePiwikConstants() {
 		if (! defined ( 'PIWIK_INCLUDE_PATH' )) {
-			@header ( 'Content-type: text/xml' );
+            //@header('Content-type: text/html');
 			define ( 'PIWIK_INCLUDE_PATH', self::$settings->getGlobalOption ( 'piwik_path' ) );
 			define ( 'PIWIK_USER_PATH', self::$settings->getGlobalOption ( 'piwik_path' ) );
 			define ( 'PIWIK_ENABLE_DISPATCH', false );
@@ -1023,7 +1025,6 @@ class WP_Piwik {
 	 *        	attribute list
 	 */
 	public function shortcode($attributes) {
-		load_plugin_textdomain ( 'wp-piwik', false, 'wp-piwik' . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
 		shortcode_atts ( array (
 				'title' => '',
 				'module' => 'overview',
@@ -1084,8 +1085,9 @@ class WP_Piwik {
 			$this->log ( 'Tried to identify current site, result: ' . serialize ( $result ) );
 			if (is_array( $result ) && empty( $result ))
 				$result = $this->addPiwikSite ( $blogId );
-			elseif ( $result != 'n/a' )
+			elseif ( $result != 'n/a' && isset($result [0]) )
 				$result = $result [0] ['idsite'];
+			else $result = null;
 		} else $result = null;
 		self::$logger->log ( 'Get Piwik ID: WordPress site ' . ($isCurrent ? get_bloginfo ( 'url' ) : get_blog_details ( $blogId )->siteurl) . ' = Piwik ID ' . $result );
 		if ($result !== null) {
@@ -1223,6 +1225,11 @@ class WP_Piwik {
 		new \WP_Piwik\Widget\Chart ( $this, self::$settings, $this->statsPageId );
 		new \WP_Piwik\Widget\Visitors ( $this, self::$settings, $this->statsPageId );
 		new \WP_Piwik\Widget\Overview ( $this, self::$settings, $this->statsPageId );
+        if (self::$settings->getGlobalOption ( 'stats_ecommerce' )) {
+            new \WP_Piwik\Widget\Ecommerce ($this, self::$settings, $this->statsPageId);
+            new \WP_Piwik\Widget\Items ($this, self::$settings, $this->statsPageId);
+            new \WP_Piwik\Widget\ItemsCategory ($this, self::$settings, $this->statsPageId);
+        }
 		if (self::$settings->getGlobalOption ( 'stats_seo' ))
 			new \WP_Piwik\Widget\Seo ( $this, self::$settings, $this->statsPageId );
 		new \WP_Piwik\Widget\Pages ( $this, self::$settings, $this->statsPageId );
